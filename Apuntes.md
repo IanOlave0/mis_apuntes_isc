@@ -1,4 +1,5 @@
 <!-- Dia 1 -->
+
 # LENGUAJE MARKDOWN E INICIACIÓN A GIT
 
 Antes de empezar, el markdown es un
@@ -36,14 +37,14 @@ Love**is**bold
 
 ### Texto italico
 
-Italicized text is the *cat's meow*.
-A *cat* meow.
+Italicized text is the _cat's meow_.
+A _cat_ meow.
 
 ---
 
 ### Texto en negrita y cursiva
 
-This text is ***really important***.
+This text is **_really important_**.
 This is really***very***important text.
 
 ---
@@ -52,7 +53,7 @@ This is really***very***important text.
 
 > Dorothy followed her through many of the beautiful rooms in her castle.
 >
->> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+> > The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
 
 ---
 
@@ -89,7 +90,7 @@ System.out.println("Hola Mundo");
 ### Formato de enlaces
 
 I love supporting the **[EFF](https://eff.org)**.
-This is the *[Markdown Guide](https://www.markdownguide.org)*.
+This is the _[Markdown Guide](https://www.markdownguide.org)_.
 See the section on [`code`](#code).
 
 ---
@@ -99,6 +100,7 @@ See the section on [`code`](#code).
 ![Gatito fiesta](./fotos/Zafrafiesta.webp)
 
 ---
+
 ---
 
 ## Inicio a Git
@@ -135,7 +137,7 @@ copia definitiva de el proyecto.
 Para poder empezar a subir cambios de nuestros archivos, tenemos que entender
 primero que todo lo que modifiquemos o que creamos, está trabajándose localmente,
 es decir, no afectará al repositorio, en cambio si queremos guardar cambios de los
-archivos, tenemos que poner estos archivos en algo llamado  "staging area".
+archivos, tenemos que poner estos archivos en algo llamado "staging area".
 
 Este básicamente es un área intermedia entre tu directorio de trabajo y el
 repositorio donde preparas los cambios para que se hagan efectivos con un commit.
@@ -160,6 +162,46 @@ rama master, esto con el siguiente comando:
 Y con esto ya tenemos nuestra primer versión de nuestro proyecto en nuestro
 repositorio, cabe recalcar que cada versión que subamos tendrá un identificador
 único.
+
+Si no queremos memorizar tantos comandos y queremos de alguna forma crear atajos
+para estos comandos, podemos usar lo que es un "alias", podemos usarlo, por ejemplo por si queremos crear un atajo para el siguiente comando para que nos muestre un log mas ordenado:
+
+- `git log --graph --decorate --all --oneline`
+
+Si no queremos memorizar todo eso, le podemos agregar un alias de la siguiente manera:
+
+- `git config --global alias.mialias "--graph --decorate --all --oneline"`
+
+Con este comando estamos creando un alias global llamado "mialias" con el que se ejecutará lo que está adentro de las comillas, así que la próxima vez que se necesite usar ese comando largo, ahora solo usamos nuestro alias:
+
+- `git mialias`
+
+Y se ejecutará nuesto comando.
+
+Pasando a otro caso, imaginemos que tenemos archivos o directorios en nuestro repositorio que realmente no ocupamos subir con un commit, el problema va a ser, que git por defecto te estará recordando siempre de subir el archivo. Para evitar esto, lo que se usa es un archivo oculto en tu directorio en el que podrás meter todos los archivos o directorios que quieras que git ignore, ya que no les quieres crear una copia, para crear este archivo en tu repositorio vamos a usar:
+
+- `touch .gitignore`
+
+Ya con esto tendremos un archivo en el que dentro podremos excluir archivos del rastreo de git, algunos ejemplos de lo que podemos escribir dentro son:
+
+> Dependencias
+>
+> > node_modules/
+>
+> Archivos de entorno (Contraseñas/API Keys)
+>
+> > .env
+> > .env.local
+>
+> Build artifacts
+>
+> > dist/
+> > build/
+>
+> Logs
+>
+> > npm-debug.log*
+> > yarn-error.log*
 
 ---
 
