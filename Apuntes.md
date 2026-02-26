@@ -161,6 +161,35 @@ Y con esto ya tenemos nuestra primer versión de nuestro proyecto en nuestro
 repositorio, cabe recalcar que cada versión que subamos tendrá un identificador
 único.
 
+Para ver el historial de los commits junto con la información de los mismos
+podemos usar el comando:
+
+- `git log`
+
+Este comando fundamental de Git utilizado para visualizar el historial de confirmaciones (commits) de un repositorio, mostrando cronológicamente (del más reciente al más antiguo) el identificador (hash SHA), autor, fecha y mensaje de cada cambio.
+
+Si tenemos modificado un archivo pero queremos devolerlo a como estaba en
+el último commit realizado, podemos usar el comando:
+
+- `git restore tuarchivo`
+
+El cual descarta cambios que no se pusieron en el área de staging.
+
+En cambio si lo que buscamos es deshacer todos los cambios locales
+del repositorio, usamos el comando
+
+- `git reset`
+
+El cual mueve el puntero de la rama (HEAD) a una confirmación (commit) anterior y ajustando el área de preparación (staging area) y el directorio de trabajo según el modo utilizado (--soft, --mixed, --hard). Actúa como una máquina del tiempo para reescribir la historia localmente, siendo la opción --hard la más drástica al eliminar cambios no confirmados.
+
+Principales modos de git reset:
+
+- soft: Mueve el HEAD al commit especificado, pero mantiene tus cambios actuales en el área de preparación (listos para un nuevo commit).
+- mixed (predeterminado): Mueve el HEAD y restablece el área de preparación al commit indicado, pero mantiene los cambios en el directorio de trabajo como archivos no modificados (unstaged).
+- hard: Mueve el HEAD, restablece el área de preparación y el directorio de trabajo al commit especificado. Borra todos los cambios no confirmados, por lo que es una operación destructiva.
+
+asdf
+
 ---
 
 ### Branches
