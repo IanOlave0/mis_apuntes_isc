@@ -129,7 +129,7 @@ Con esto iniciamos git en ese directorio en un branch llamado "master".
 
 ---
 
-### Commits
+### Manejo de nuestros archivos
 
 Por el momento empezaremos a trabajar en una rama llamada master, que es la
 copia definitiva de el proyecto.
@@ -190,6 +190,8 @@ Principales modos de git reset:
 - mixed (predeterminado): Mueve el HEAD y restablece el área de preparación al commit indicado, pero mantiene los cambios en el directorio de trabajo como archivos no modificados (unstaged).
 - hard: Mueve el HEAD, restablece el área de preparación y el directorio de trabajo al commit especificado. Borra todos los cambios no confirmados, por lo que es una operación destructiva.
 
+### Alias
+
 Pasando a otro punto si no queremos memorizar tantos comandos y queremos de alguna forma crear atajos
 para estos comandos, podemos usar lo que es un "alias", podemos usarlo, por ejemplo por si queremos crear un atajo para el siguiente comando para que nos muestre un log mas ordenado:
 
@@ -229,8 +231,6 @@ Ya con esto tendremos un archivo en el que dentro podremos excluir archivos del 
 >
 > > npm-debug.log*
 > > yarn-error.log*
-
-
 
 asdf
 
