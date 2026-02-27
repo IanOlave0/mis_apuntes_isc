@@ -168,9 +168,13 @@ podemos usar el comando:
 
 - `git log`
 
-Este comando fundamental de Git utilizado para visualizar el historial de confirmaciones (commits) de un repositorio, mostrando cronológicamente (del más reciente al más antiguo) el identificador (hash SHA), autor, fecha y mensaje de cada cambio.
+Este comando fundamental de Git ues tilizado para visualizar el historial de confirmaciones (commits) de un repositorio, mostrando cronológicamente (del más reciente al más antiguo) el identificador (hash SHA), autor, fecha y mensaje de cada cambio.
 
-Si tenemos modificado un archivo pero queremos devolerlo a como estaba en
+El problema con este comando, es que solo muestra el historial de commits, pero si lo que nosotros queremos hacer es ver todo el historial de los cambios que se han hecho, podemos usar este otro comando.
+
+- `git reflog`
+
+Pasanso a otro caso, si tenemos modificado un archivo pero queremos devolerlo a como estaba en
 el último commit realizado, podemos usar el comando:
 
 - `git restore tuarchivo`
@@ -189,6 +193,8 @@ Principales modos de git reset:
 - soft: Mueve el HEAD al commit especificado, pero mantiene tus cambios actuales en el área de preparación (listos para un nuevo commit).
 - mixed (predeterminado): Mueve el HEAD y restablece el área de preparación al commit indicado, pero mantiene los cambios en el directorio de trabajo como archivos no modificados (unstaged).
 - hard: Mueve el HEAD, restablece el área de preparación y el directorio de trabajo al commit especificado. Borra todos los cambios no confirmados, por lo que es una operación destructiva.
+
+Es importante también mencionar que el `git reset --hard <commit>` sirve tanto para ir hacia el pasado, como para volver hacia adelante, por ejemplo, si nosotros por accidente borramos un commit que no queríamos perder, podemos con el comando `git reflog` ver nuestro historial de cambios, ver el HASH ID del commit que queremos recuperar, y volver hacia el usando otro: `git reset --hard <commit>`, y con esto, ya estaremos devuelta en el commit.
 
 ### Alias
 
@@ -234,8 +240,6 @@ Ya con esto tendremos un archivo en el que dentro podremos excluir archivos del 
 > > npm-debug.log*
 > > yarn-error.log*
 
-asdf
-
 ### Git diff
 
 Este nuevo comando nos servirá a la hora de querer comparar distintos estados estados de nuestro repositorio por ejemplo, si hemos modificado un archivo y queremos ver qué partes han sido añadidas, eliminadas o modificadas, usamos git diff, comando el cual desplegará una lista de cambios que se han realizado en tu directorio que no se han puesto todavía en el área de staging. Algunso otros ejemplos de uso del git diff son:
@@ -263,6 +267,20 @@ Y para volver al presente (volver a la punta de nuestra rama actual) simplemente
 - `git checkout main`
 
 Y con esto ya estaremos devuelta al presente!
+
+### Git tag
+
+`git tag` es un comando que nos permite marcar un commit específico al que queramos tener identificado, esto lo hace poniéndole una etiqueta que nosotros queramos, por ejemplo, si lanzamos una versión de nuestro proyecto importante que queremos marcar, podemos usar:
+
+- `git tag version2_proyecto`
+
+Ya con esto tendremos marcado ese punto del tiempo por si queremos volver a el usando un:
+
+`git checkout version2_proyecto`
+
+Para listar todos los tags que tenemos, simplemente se usa:
+
+`git tag`
 
 ---
 
