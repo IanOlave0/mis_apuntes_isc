@@ -129,7 +129,7 @@ Con esto iniciamos git en ese directorio en un branch llamado "master".
 
 ---
 
-### Manejo de nuestros archivos
+### Manejo de Básico de Repositorio
 
 Por el momento empezaremos a trabajar en una rama llamada master, que es la
 copia definitiva de el proyecto.
@@ -207,6 +207,8 @@ Con este comando estamos creando un alias global llamado "mialias" con el que se
 
 Y se ejecutará nuesto comando.
 
+### Archivo .gitignore
+
 Pasando a otro caso, imaginemos que tenemos archivos o directorios en nuestro repositorio que realmente no ocupamos subir con un commit, el problema va a ser, que git por defecto te estará recordando siempre de subir el archivo. Para evitar esto, lo que se usa es un archivo oculto en tu directorio en el que podrás meter todos los archivos o directorios que quieras que git ignore, ya que no les quieres crear una copia, para crear este archivo en tu repositorio vamos a usar:
 
 - `touch .gitignore`
@@ -233,6 +235,34 @@ Ya con esto tendremos un archivo en el que dentro podremos excluir archivos del 
 > > yarn-error.log*
 
 asdf
+
+### Git diff
+
+Este nuevo comando nos servirá a la hora de querer comparar distintos estados estados de nuestro repositorio por ejemplo, si hemos modificado un archivo y queremos ver qué partes han sido añadidas, eliminadas o modificadas, usamos git diff, comando el cual desplegará una lista de cambios que se han realizado en tu directorio que no se han puesto todavía en el área de staging. Algunso otros ejemplos de uso del git diff son:
+
+- `git diff --staged` : Muestra cambios que han sido añadidos al stage pero que aún no han sido comiteados.
+
+- `git diff <commit>` : Muestra todos los cambios locales añadidos o no relativos a un commit o branch específico.
+
+- `git diff <commit1> <commit2>` : Muestra los cambios entre dos commits que tu elijas.
+
+### Desplazamiento por una Rama
+
+En este momento lo que sabemos es que cuando trabajamos, existe una rama principal que se llama main que es donde estamos, esta tiene varios commits o sea varias versiones de tu directorio local, pero cómo sabemos en qué parte del tiempo estamos parados? Para esto debemos comprender lo que es el `HEAD`, el HEAD es un puntero simbólico que indica donde estas parado actualmente en tu historial, por lo que por lo general está apuntando al último commit que has realizado.
+
+Ahora, si nosotros queremos "regresar al pasado", tenemos que mover nuestro HEAD, esto lo podemos lograr con el comando:
+
+- `git checkout`
+
+Este comando es el que te permite mover tu HEAD a determinado commit que elijas y con esto, cambiar los archivos de tu directorio a como los tenías en ese momento exacto del tiempo, para indicar a qué commit quieres viajar, tenemos que ingresar el Hash ID de dicho commit, un ejemplo de esto puede ser:
+
+- `git commit asdf893480d0adkpty`
+
+Y para volver al presente (volver a la punta de nuestra rama actual) simplemente hacemos un checkout al nombre de la rama:
+
+- `git checkout main`
+
+Y con esto ya estaremos devuelta al presente!
 
 ---
 
