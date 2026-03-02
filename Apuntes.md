@@ -97,7 +97,7 @@ See the section on [`code`](#code).
 
 ### Imagenes
 
-![Gatito fiesta](./fotos/Zafrafiesta.webp)
+![Gatito fiesta](./fotos/gato.webp)
 
 ---
 
@@ -168,9 +168,13 @@ podemos usar el comando:
 
 - `git log`
 
-Este comando fundamental de Git utilizado para visualizar el historial de confirmaciones (commits) de un repositorio, mostrando cronológicamente (del más reciente al más antiguo) el identificador (hash SHA), autor, fecha y mensaje de cada cambio.
+Este comando fundamental de Git es utilizado para visualizar el historial de confirmaciones (commits) de un repositorio, mostrando cronológicamente (del más reciente al más antiguo) el identificador (hash SHA), autor, fecha y mensaje de cada cambio.
 
-Si tenemos modificado un archivo pero queremos devolerlo a como estaba en
+El `git log` solamente nos muestra un historial de los commits que se han realizado, pero si en cambio queremos ver un historial completo de todos los cambios que se han hecho podemos usar:
+
+- `git reflog`
+
+Pasando a otro caso, si tenemos modificado un archivo pero queremos devolerlo a como estaba en
 el último commit realizado, podemos usar el comando:
 
 - `git restore tuarchivo`
@@ -189,6 +193,8 @@ Principales modos de git reset:
 - soft: Mueve el HEAD al commit especificado, pero mantiene tus cambios actuales en el área de preparación (listos para un nuevo commit).
 - mixed (predeterminado): Mueve el HEAD y restablece el área de preparación al commit indicado, pero mantiene los cambios en el directorio de trabajo como archivos no modificados (unstaged).
 - hard: Mueve el HEAD, restablece el área de preparación y el directorio de trabajo al commit especificado. Borra todos los cambios no confirmados, por lo que es una operación destructiva.
+
+Es importante agregar que el `git reset --hard <commit>` se utiliza tanto para ir hacia atrás como para ir a hacia adelante de nuevo, por ejemplo, si por error hemos destruido un commit importante, podemos volver a el usando otro `git reset --hard <commit>` con su HASH id que podemos ver con `git reflog`.
 
 ### Alias
 
@@ -248,13 +254,13 @@ Este nuevo comando nos servirá a la hora de querer comparar distintos estados e
 
 ### Desplazamiento por una Rama
 
-En este momento lo que sabemos es que cuando trabajamos, existe una rama principal que se llama main que es donde estamos, esta tiene varios commits o sea varias versiones de tu directorio local, pero cómo sabemos en qué parte del tiempo estamos parados? Para esto debemos comprender lo que es el `HEAD`, el HEAD es un puntero simbólico que indica donde estas parado actualmente en tu historial, por lo que por lo general está apuntando al último commit que has realizado.
+En este momento lo que sabemos es que cuando trabajamos, existe una rama principal que se llama main que es donde estamos, esta tiene varios commits o sea varias versiones de tu directorio local, pero cómo sabemos en qué parte del tiempo estamos parados? Para esto debemos comprender lo que es el `HEAD`, el HEAD es un puntero simbólico que indica donde estas parado actualmente en tu historial, por lo que por lo general está apuntando a la rama en la que estás parado.
 
 Ahora, si nosotros queremos "regresar al pasado", tenemos que mover nuestro HEAD, esto lo podemos lograr con el comando:
 
 - `git checkout`
 
-Este comando es el que te permite mover tu HEAD a determinado commit que elijas y con esto, cambiar los archivos de tu directorio a como los tenías en ese momento exacto del tiempo, para indicar a qué commit quieres viajar, tenemos que ingresar el Hash ID de dicho commit, un ejemplo de esto puede ser:
+Este comando es el que te permite mover tu HEAD (poniendote en un estado detached HEAD ya que en lugar de apuntar a la rama, apuntas a un commit) a determinado commit que elijas y con esto, cambiar los archivos de tu directorio a como los tenías en ese momento exacto del tiempo, para indicar a qué commit quieres viajar, tenemos que ingresar el Hash ID de dicho commit, un ejemplo de esto puede ser:
 
 - `git commit asdf893480d0adkpty`
 
@@ -264,8 +270,67 @@ Y para volver al presente (volver a la punta de nuestra rama actual) simplemente
 
 Y con esto ya estaremos devuelta al presente!
 
+### Git tag
+
+Este comando nos servirá para marcar commits que nos interesará guardar, por ejemplo, si tenemos nuestra versión 3 de un proyecto y la queremos marcar, podemos asignarle un tag de la siguiente forma:
+
+- `git tag version3`
+
+Y así de esta forma podremos localizar ese commit con el tag. Ahora en lugar de hacer un checkout con todo el HASH ID, podemos usar el tag para movernos:
+
+- `git checkout version3`
+
 ---
 
-### Branches
+## Branches
 
 Las ramas (branches) en Git son punteros ligeros y móviles hacia los commits,permitiendo crear entornos de trabajo aislados, paralelos y seguros, sin afectar la rama principal (main/master). Facilitan el desarrollo de nuevas funcionalidades, pruebas o correcciones, permitiendo fusionar cambios posteriormente.
+
+Una vez entendido este concepto de los branches, algunos de los comandos básicos para su manejo son los siguientes:
+
+- `git branch`: Lista todas las ramas locales.
+- `git branch <nombre>` : Crea una nueva rama.
+- `git checkout <nombre>` : Salta a la rama indicada (en versiones modernas también se usa git switch).
+
+### Git merge
+
+Ahora, qué pasa si queremos unir los cambios que hemos hecho en varios branches al main? Para esto usamos el `git merge`, el cual es un comando que se usa para integrar los cambios de una rama a otra. Este comando se ejecuta desde la rama que queremos que reciba los cambios, que por lo general es la main, una vez estés en tu rama, puedes ejecutar:
+
+- `git merge rama_secundaria`
+
+Y los cambios se agregarán a tu main!
+
+Unos puntos a tener en cuenta sobre los **merge** son los siguiente:
+
+- Preserva el historial completo de commits de ambos branches.
+- Realiza merges automáticos a menos que existan conflictos que requieran de una solución manual.
+- No elimina branches despues del merge.
+- Comunmente usado para añadir características al main.
+
+Para entender todo el proceso, usaremos una imagen de ejemplo:
+
+![Git merge](./fotos/gitmerge.webp)
+
+En la imagen podremos observar elementos como lo son:
+
+- Common Base: Es el commit de donde ambos branches se originaron, es su ancestro en común.
+- Main tip: Es el útlimo commit realizado en el main branch.
+- Feature tip: El último commit realizado en el dev branch.
+
+Con esto en cuenta, lo que podemos observar es que cambios se han realizado en ambos branches y que estos vienen de un ancestro común que es el common base. Ahora veamos como se ve el repositorio después del merge:
+
+![Git after-merge](./fotos/git%20after-merge.png)
+
+Aquí lo que sucedió es que git comparó el main tip, el feature tip y el ancestro común y revisó los cambios que se realizaron y si no existe ningún conflicto para combinar ambos branches con un **merge commit**.
+
+### Tipos de Merge
+
+Una vez entendido el funcionamiento básico de git merge, pasaremos a los dos tipos que existen, que son el _fast-forward merging_ y el _Three way merging_.
+
+**Fast-forward merging**: Este ocurre cuando mientras se hicieron cambios en el branch secundario, el main se mantuvo igual, así que lo que hace Git es que en lugar de hacer un merge commit, simplemente mueve el Main tip al Feature tip:
+
+![Fast-forward merging](./fotos/ff-merging.png)
+
+**Three way merging**: Este ocurre cuando han ocurrido cambios tanto en el branch secundario como en el main, Git lo que hace es generar un nuevo _merge commit_ comparando cambios que se realizaron y uniéndolos:
+
+![Three way merging](./fotos/Three%20way%20merging.png)
