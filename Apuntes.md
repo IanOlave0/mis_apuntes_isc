@@ -282,16 +282,6 @@ Para listar todos los tags que tenemos, simplemente se usa:
 
 `git tag`
 
-### Git tag
-
-Este comando nos servirá para marcar commits que nos interesará guardar, por ejemplo, si tenemos nuestra versión 3 de un proyecto y la queremos marcar, podemos asignarle un tag de la siguiente forma:
-
-- `git tag version3`
-
-Y así de esta forma podremos localizar ese commit con el tag. Ahora en lugar de hacer un checkout con todo el HASH ID, podemos usar el tag para movernos:
-
-- `git checkout version3`
-
 ---
 
 ## Branches
