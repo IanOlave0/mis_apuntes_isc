@@ -1,6 +1,6 @@
-<!-- Dia 1 -->
+# Apuntes de Git y GitHub
 
-# LENGUAJE MARKDOWN E INICIACIÓN A GIT
+## Lenguaje de Markdown
 
 Antes de empezar, el markdown es un
 lenguaje de marcaje ligero
@@ -293,6 +293,7 @@ Una vez entendido este concepto de los branches, algunos de los comandos básico
 - `git branch`: Lista todas las ramas locales.
 - `git branch <nombre>` : Crea una nueva rama.
 - `git checkout <nombre>` : Salta a la rama indicada (en versiones modernas también se usa git switch).
+- `git branch -d <nombre>` : Elimina una rama.
 
 ### Git merge
 
@@ -336,3 +337,40 @@ Una vez entendido el funcionamiento básico de git merge, pasaremos a los dos ti
 **Three way merging**: Este ocurre cuando han ocurrido cambios tanto en el branch secundario como en el main, Git lo que hace es generar un nuevo _merge commit_ comparando cambios que se realizaron y uniéndolos:
 
 ![Three way merging](./fotos/Three%20way%20merging.png)
+  
+### Resolución de conflictos de Merge
+
+Imaginemos que tenemos dos branches trabajando en un proyecto y cada uno de ellos hace sus commits, ahora imaginemos que ambos branches han modificado las mismas líneas de código, esto resultará en un problema a la hora de hacer el merge, ya que git directamente no elegirá por nosotros qué cambios son los que queremos mantener, así que entramos en el modo de resolución de conflictos, donde en nuestro editor podremos escoger y ver qué cambios queremos implementar y cuáles desechar. Esto en el editor se ve así:
+
+![merge-conflict](./fotos/merging-conflict.webp)
+
+Una vez resuelto el conflicto ya podemos realizar el merge sin ningún problema.
+
+### Git stash
+
+Git stash es un comando que nos permite guardar los cambios que hemos hecho en nuestro directorio en una pila interna y volvernos al estado del último commit. Esto es útil si por ejemplo realizamos cambios que no queremos commitear pero que queremos tener guardados, ya sea para:
+
+- Hacer un switch de branches urgente, guardando tus cambios sin tener que commitearlos
+
+- Para probar algo distinto sin ensuciar el historial de commits con versiones incompletas
+
+- Hacer un `git pull` pero se tienen modificaciones locales que entran en conflicto.
+
+Una lista de comandos esenciales para gestionar estos cambios son:
+
+- `git stash`: Guarda tus cambios actuales y limpia el directorio de trabajo.
+- `git stash list`: Muestra la lista de todos los "paquetes" de cambios que has guardado.
+- `git stash pop`: Recupera los últimos cambios guardados, los aplica a tu rama actual y los elimina de la lista.
+- `git stash apply`: Aplica los cambios pero los mantiene guardados en la lista (útil si quieres aplicarlos en varias ramas).
+- `git stash drop`: Elimina un conjunto de cambios específico de la lista.
+- `git stash clear`: Borra absolutamente todos los cambios que se tengan en la pila interna.
+
+---
+
+### Inicio a GitHub
+
+Ahora ¿Cuál es la diferencia de Git y GitHub? ¿Son lo mismo? Bueno para entender esto, es útil ver sus roles por separado:
+
+- Git (El Motor): Es un software de control de versiones que se instala localmente en la computadora. Funciona como una "máquina del tiempo" que registra cada cambio que se hace en tu código, permitiendo volver a versiones anteriores si algo falla.
+
+- GitHub (El Almacén): Es un servicio de alojamiento en la web que utiliza Git como base. Permite subir repositorios locales a la nube para que otros puedan verlos, colaborar en ellos o simplemente para tener un respaldo seguro.
