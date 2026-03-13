@@ -367,10 +367,32 @@ Una lista de comandos esenciales para gestionar estos cambios son:
 
 ---
 
-### Inicio a GitHub
+## Inicio a GitHub
 
 Ahora ¿Cuál es la diferencia de Git y GitHub? ¿Son lo mismo? Bueno para entender esto, es útil ver sus roles por separado:
 
 - Git (El Motor): Es un software de control de versiones que se instala localmente en la computadora. Funciona como una "máquina del tiempo" que registra cada cambio que se hace en tu código, permitiendo volver a versiones anteriores si algo falla.
 
 - GitHub (El Almacén): Es un servicio de alojamiento en la web que utiliza Git como base. Permite subir repositorios locales a la nube para que otros puedan verlos, colaborar en ellos o simplemente para tener un respaldo seguro.
+
+## Repositorio
+
+Un repositorio en GitHub es la carpeta digital de tu proyecto que vive en internet. Es el lugar donde se almacena todo el código fuente, archivos, imágenes y, lo más importante, el historial completo de cambios de tu proyecto.
+
+El repositorio puede ser tanto local, únicamente guardando los cambios con git en tu máquina, así como puede ser remoto, esto subiéndolo a la plataforma de GitHub.
+
+Para crear un repositorio se puede tanto hace en tu cuenta de GitHub, o con la terminal dirigiéndote a la carpeta del proyecto y ejecutando el comando:
+
+- `git init`
+
+Y con esto tendremos nuestro "repo".
+
+Otras cosas a tener en cuenta a la hora de crear un repo son las siguientes:
+
+- Privacidad: Podemos escoger si queremos dejar la repo en público y que cualquier persona pueda ver el contenido, clonarlo y aprender de el. O podemos configurarlo como una repo privada para que solo tú y las personas con acceso puedan verlo.
+
+- Archivo README: El README.md es como la carta de presentación del repo. Se escribe en lenguaje **Markdown**  y explica qué es el proyecto, cómo instalarlo y cómo usarlo.
+
+- Add .gitignore: GitHub da la opción de crear el archivo .gitignore para el repo donde se podrán guardar cosas que no se quieren subir como archivos temporales o contraseñas.
+
+- Add a license: Es algo más enfocado a grandes proyectos pero básicamente una licencia define cómo otros pueden usar, modificar o distribuir tu código.
