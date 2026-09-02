@@ -1,0 +1,18 @@
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos temporales e historial de Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Caché de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de configuración del entorno / VS Code
+.vscode/
+.DS_Store
+Thumbs.db
